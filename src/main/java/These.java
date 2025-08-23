@@ -21,7 +21,6 @@ public class These {
                 + "|____/ \\__,_|_|\\_\\___|\n";
 
         String intro = "Hello! I'm These\n" + "What can I do for you?";
-        String outro = "Bye. Hope to see you again soon!";
         System.out.println("Hello from\n" + logo);
         echo(intro);
     }
