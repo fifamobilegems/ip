@@ -11,15 +11,19 @@ public class Task {
 
     @Override
     public String toString() {
-        if (marked) {
-            return id + ". [X] " + name;
-        } else {
-            return id + ". [ ] " + name;
-        }
+            return getId() + ". [" + getMarked() + "] " + getName();
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public String getId() {
+        return String.valueOf(this.id);
+    }
+
+    public String getMarked() {
+        return (marked) ? "X" : " ";
     }
 
     public void mark() {

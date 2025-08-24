@@ -10,7 +10,6 @@ public class These {
         String intro = "Hello! I'm These\n" + "What can I do for you?";
         String outro = "Bye. Hope to see you again soon!";
 
-        Task t = new Task(input, false, task_id);
 
         if (Objects.equals(input, intro)) {
             System.out.println(intro);
@@ -49,12 +48,48 @@ public class These {
             echo(next);
 
         } else {
-            System.out.println("added: " + input);
-            task_list[task_id] = t;
-            task_id++;
+            // task
+            String[] parts = input.split(" ", 2);
+
+            if (input.startsWith("todo")) {
+                Todo todo = new Todo(parts[1], false, task_id);
+                task_list[task_id] = todo;
+                task_id++;
+
+                String msg = "Got it. I've added this task:\n"
+                        + todo.toString()
+                        + "\nNow you have " + getTaskCount() + " tasks in the list.";
+                System.out.println(msg);
+            } else if (input.startsWith("deadline")) {
+                String[] byPart = parts[1].split("/by");
+                Deadline deadline = new Deadline(byPart[0], false, task_id, byPart[1]);
+                task_list[task_id] = deadline;
+                task_id++;
+
+                String msg = "Got it. I've added this task:\n"
+                        + deadline.toString()
+                        + "\nNow you have " + getTaskCount() + " tasks in the list.";
+                System.out.println(msg);
+            } else {
+                String[] fromPart = parts[1].split("/from");
+                String[] toPart = fromPart[1].split("/to");
+                Event event = new Event(fromPart[0], false, task_id, toPart[0], toPart[1]);
+                task_list[task_id] = event;
+                task_id++;
+
+                String msg = "Got it. I've added this task:\n"
+                        + event.toString()
+                        + "\nNow you have " + getTaskCount() + " tasks in the list.";
+                System.out.println(msg);
+            }
+
             String next = sc.nextLine();
             echo(next);
         }
+    }
+
+    public static String getTaskCount() {
+        return String.valueOf(task_id);
     }
 
     public static void list() {
