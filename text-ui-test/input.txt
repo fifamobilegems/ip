@@ -4,4 +4,12 @@ event project meeting /from tomorrow 2pm /to the year 2039
 list
 mark 1
 unmark 1
+poo
+mark
+unmark 
+todo
+deadline fight
+event o
+event o /from tomorrow
+event o /to yesterday
 bye

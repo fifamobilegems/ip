@@ -24,4 +24,12 @@ Nice! I've marked this task as done:
 [T][X] read book
 OK, I've marked this task as not done yet:
 [T][ ] read book
+woah what are you even saying
+woah mark needs a number
+woah unmark needs a number
+woah you're todoing nothing
+woah your deadline needs to have /by field
+woah your event needs to have /from field
+woah your event needs to have /to field
+woah your event needs to have /from field
 Bye. Hope to see you again soon!
