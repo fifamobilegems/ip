@@ -1,0 +1,7 @@
+todo read book
+deadline return book /by yesterday
+event project meeting /from tomorrow 2pm /to the year 2039
+list
+mark 1
+unmark 1
+bye

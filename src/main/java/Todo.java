@@ -5,6 +5,6 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return "[T] [" + getMarked() + "] " + getName();
+        return "[T][" + getMarked() + "] " + getName();
     }
 }

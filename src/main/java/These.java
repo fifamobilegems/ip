@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class These {
     static Task[] task_list = new Task[100];
-    static int task_id = 0;
+    static int task_id = 1;
     static final Scanner sc = new Scanner(System.in);
 
     public static void echo(String input) {
@@ -29,7 +29,7 @@ public class These {
 
             // output
             String msg = "Nice! I've marked this task as done:\n";
-            System.out.println(msg + "[X] " + task_list[mark_index].getName());
+            System.out.println(msg + task_list[mark_index].toString());
 
             String next = sc.nextLine();
             echo(next);
@@ -42,7 +42,7 @@ public class These {
 
             // output
             String msg = "OK, I've marked this task as not done yet:\n";
-            System.out.println(msg + "[ ] " + task_list[unmark_index].getName());
+            System.out.println(msg + task_list[unmark_index].toString());
 
             String next = sc.nextLine();
             echo(next);
@@ -89,12 +89,14 @@ public class These {
     }
 
     public static String getTaskCount() {
-        return String.valueOf(task_id);
+        return String.valueOf(task_id-1);
     }
 
     public static void list() {
-        for (int i = 0; i < task_id; i++) {
-            System.out.println(task_list[i].toString());
+        System.out.println("Here are the tasks in your list:");
+        for (int i = 1; i < task_id; i++) {
+            Task these = task_list[i];
+            System.out.println(these.getId() + "." + these);
         }
     }
 
