@@ -57,7 +57,7 @@ public class These {
                 task_id++;
 
                 String msg = "Got it. I've added this task:\n"
-                        + todo.toString()
+                        + todo
                         + "\nNow you have " + getTaskCount() + " tasks in the list.";
                 System.out.println(msg);
             } else if (input.startsWith("deadline")) {
@@ -67,7 +67,7 @@ public class These {
                 task_id++;
 
                 String msg = "Got it. I've added this task:\n"
-                        + deadline.toString()
+                        + deadline
                         + "\nNow you have " + getTaskCount() + " tasks in the list.";
                 System.out.println(msg);
             } else {
@@ -78,7 +78,7 @@ public class These {
                 task_id++;
 
                 String msg = "Got it. I've added this task:\n"
-                        + event.toString()
+                        + event
                         + "\nNow you have " + getTaskCount() + " tasks in the list.";
                 System.out.println(msg);
             }
