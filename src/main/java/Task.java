@@ -18,6 +18,10 @@ public class Task {
         return this.name;
     }
 
+    public void dropId() {
+        this.id--;
+    }
+
     public String getId() {
         return String.valueOf(this.id);
     }

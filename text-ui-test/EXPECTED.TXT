@@ -32,4 +32,8 @@ woah your deadline needs to have /by field
 woah your event needs to have /from field
 woah your event needs to have /to field
 woah your event needs to have /from field
+Noted. I've removed this task:
+[T][ ] read book
+Now you have 2 tasks in the list
+woah you're deleting nothing
 Bye. Hope to see you again soon!

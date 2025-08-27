@@ -6,10 +6,12 @@ mark 1
 unmark 1
 poo
 mark
-unmark 
+unmark
 todo
 deadline fight
 event o
 event o /from tomorrow
 event o /to yesterday
+delete 1
+delete
 bye

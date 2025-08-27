@@ -21,7 +21,26 @@ public class These {
         } else if (Objects.equals(input, "list")) {
             list();
             return true;
-        } else if (input.startsWith("mark")) {
+        } else if (input.startsWith("delete")) {
+            //exception
+            if (parts.length < 2 || parts[1].trim().isEmpty()) {
+                throw new TheseException("you're deleting nothing");
+            }
+
+            int del_index = Integer.parseInt(parts[1]);
+            Task t = task_list[del_index];
+            for (int i = del_index; i < task_id-1; i++) {
+                task_list[i] = task_list[i+1];
+                task_list[i].dropId();
+            }
+            task_id--;
+            String msg = "Noted. I've removed this task:\n" + t.toString()
+                    + "\nNow you have " + getTaskCount() + " tasks in the list";
+            System.out.println(msg);
+            return true;
+
+        }
+        else if (input.startsWith("mark")) {
 
             // catch shit input
             if (parts.length < 2 || parts[1].trim().isEmpty()) {
