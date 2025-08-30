@@ -20,11 +20,11 @@ public class DeleteCommand implements Command {
         }
 
         int del_index = Integer.parseInt(parts[1]);
-        Task t = these.deleteTask(del_index);
+        Task t = these.getTaskList().deleteTask(del_index);
 
         String msg = "Noted. I've removed this task:\n" + t.toString()
-                + "\nNow you have " + (these.getTask_id()-1) + " tasks in the list";
-        System.out.println(msg);
+                + "\nNow you have " + (these.getTaskList().getId()-1) + " tasks in the list";
+        these.getUi().showMessage(msg);
         return true;
     }
 }

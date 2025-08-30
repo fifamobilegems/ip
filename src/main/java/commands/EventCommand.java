@@ -30,15 +30,15 @@ public class EventCommand implements Command {
             throw new TheseException("your event needs to have /to field");
         }
 
-        int task_id = these.getTask_id();
+        int task_id = these.getTaskList().getId();
 
         Event event = new Event(fromPart[0], false, task_id, toPart[0], toPart[1]);
-        these.addTask(event);
+        these.getTaskList().addTask(event);
 
         String msg = "Got it. I've added this task:\n"
                 + event
                 + "\nNow you have " + task_id + " tasks in the list.";
-        System.out.println(msg);
+        these.getUi().showMessage(msg);
 
         return true;
     }

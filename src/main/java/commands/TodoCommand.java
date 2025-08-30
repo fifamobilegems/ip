@@ -20,15 +20,15 @@ public class TodoCommand implements Command {
             throw new TheseException("your todo has nothing");
         }
 
-        int task_id = these.getTask_id();
+        int task_id = these.getTaskList().getId();
 
-        Todo todo = new Todo(parts[1], false, these.getTask_id());
-        these.addTask(todo);
+        Todo todo = new Todo(parts[1], false, these.getTaskList().getId());
+        these.getTaskList().addTask(todo);
 
         String msg = "Got it. I've added this task:\n"
                 + todo
                 + "\nNow you have " + task_id + " tasks in the list.";
-        System.out.println(msg);
+        these.getUi().showMessage(msg);
 
         return true;
     }

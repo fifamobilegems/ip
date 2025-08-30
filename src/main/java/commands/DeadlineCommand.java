@@ -25,15 +25,15 @@ public class DeadlineCommand implements Command {
             throw new TheseException("your deadline needs to have /by field");
         }
 
-        int task_id = these.getTask_id();
+        int task_id = these.getTaskList().getId();
 
         Deadline deadline = new Deadline(byPart[0], false, task_id, byPart[1]);
-        these.addTask(deadline);
+        these.getTaskList().addTask(deadline);
 
         String msg = "Got it. I've added this task:\n"
                 + deadline
                 + "\nNow you have " + task_id + " tasks in the list.";
-        System.out.println(msg);
+        these.getUi().showMessage(msg);
 
         return true;
     }

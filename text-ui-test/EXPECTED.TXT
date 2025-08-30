@@ -5,8 +5,9 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello! I'm app.These
+Hello! I'm These
 What can I do for you?
+All tasks cleared!
 Got it. I've added this task:
 [T][ ] read book
 Now you have 1 tasks in the list.
@@ -24,18 +25,19 @@ Nice! I've marked this task as done:
 [T][X] read book
 OK, I've marked this task as not done yet:
 [T][ ] read book
-woah what are you even saying
-woah mark needs a number
-woah unmark needs a number
-woah your todo has nothing
-woah your deadline has nothing
-woah your event has nothing
-woah your deadline needs to have /by field
-woah your event needs to have /from field
-woah your event needs to have /to field
-woah your event needs to have /from field
+Error: Unknown command: poo
+Error: mark needs a number
+Error: unmark needs a number
+Error: your todo has nothing
+Error: your deadline has nothing
+Error: your event has nothing
+Error: your deadline needs to have /by field
+Error: your event needs to have /from field
+Error: your event needs to have /to field
+Error: your event needs to have /from field
 Noted. I've removed this task:
 [T][ ] read book
 Now you have 2 tasks in the list
-woah you're deleting nothing
+Error: you're deleting nothing
+All tasks cleared!
 Bye. Hope to see you again soon!
