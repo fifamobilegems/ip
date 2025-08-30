@@ -5,7 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello! I'm These
+Hello! I'm app.These
 What can I do for you?
 Got it. I've added this task:
 [T][ ] read book
@@ -27,7 +27,9 @@ OK, I've marked this task as not done yet:
 woah what are you even saying
 woah mark needs a number
 woah unmark needs a number
-woah you're todoing nothing
+woah your todo has nothing
+woah your deadline has nothing
+woah your event has nothing
 woah your deadline needs to have /by field
 woah your event needs to have /from field
 woah your event needs to have /to field

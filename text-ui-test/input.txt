@@ -8,6 +8,8 @@ poo
 mark
 unmark
 todo
+deadline
+event
 deadline fight
 event o
 event o /from tomorrow
