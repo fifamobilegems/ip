@@ -16,4 +16,9 @@ public class Deadline extends Task {
     public String toString() {
         return "[D][" + getMarked() + "] " + getName() + "(by:" + getBy() + ")";
     }
+
+    @Override
+    public String toDataFormat() {
+        return "D|" + getMarked() + "|" + getName() + "|" + getBy();
+    }
 }

@@ -6,6 +6,10 @@ import commands.*;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class These {
     private Task[] task_list = new Task[100];
@@ -85,6 +89,87 @@ public class These {
         return t;
     }
 
+    private File getTasksFile() throws IOException {
+        File dir = new File("data");
+        if (!dir.exists()) {
+            if (dir.mkdirs()) {
+                System.out.println("Created directory: " + dir.getAbsolutePath());
+            } else {
+                System.out.println("Failed to create directory: " + dir.getAbsolutePath());
+            }
+        }
+        File tasksFile = new File(dir, "tasks.txt");
+        if (tasksFile.createNewFile()) {
+            System.out.println("Created file: " + tasksFile.getAbsolutePath());
+        }
+        return tasksFile;
+    }
+
+    public void loadTasks() {
+        try {
+            File tasksFile = getTasksFile();
+
+            Scanner fileScanner = new Scanner(tasksFile);
+            int curr_id = 1;
+
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                if (!line.trim().isEmpty()) {
+                    Task t = parseTask(line, curr_id);
+                    addTask(t);
+                    curr_id++;
+                }
+            }
+            fileScanner.close();
+
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+        }
+    }
+
+    public void updateTasks() {
+        try {
+            File tasksFile = getTasksFile();
+            FileWriter fw = new FileWriter(tasksFile);
+
+            for (int i = 1; i < task_id; i++) {
+                Task t = getTask(i);
+                if (t != null) {
+                    fw.write(t.toDataFormat() + "\n");
+                }
+            }
+
+            fw.close();
+
+        } catch (IOException e) {
+            System.out.println("Error writing tasks: " + e.getMessage());
+        }
+
+
+    }
+
+    public Task parseTask(String line, int id) {
+        String[] parts = line.split("\\|");
+
+        String type = parts[0];
+        boolean isMarked = parts[1].equals("X");
+
+        switch (type) {
+            case "T" -> {
+                return new Todo(parts[2], isMarked, id);
+            }
+            case "D" -> {
+                return new Deadline(parts[2], isMarked, id, parts[3]);
+            }
+            case "E" -> {
+                return new Event(parts[2], isMarked, id, parts[3], parts[4]);
+            }
+            default -> {
+                throw new IllegalArgumentException("Unknown task type in file:" + type);
+            }
+        }
+    }
+
     public void run() {
 
         String logo = " ____        _        \n"
@@ -94,8 +179,11 @@ public class These {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String intro = "Hello! I'm app.These\n" + "What can I do for you?";
 
+        loadTasks();
+
         System.out.println("Hello from\n" + logo);
         System.out.println(intro);
+
 
         while (true) {
             String next = sc.nextLine();
@@ -105,6 +193,7 @@ public class These {
             } catch (TheseException e) {
                 System.out.println("woah " + e.getMessage());
             }
+            updateTasks();
         }
     }
 
