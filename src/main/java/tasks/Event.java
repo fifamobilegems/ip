@@ -23,4 +23,9 @@ public class Event extends Task {
         return "[E][" + getMarked() + "] "
                 + getName() + "(from:" + getFrom() + "to:" + getTo() + ")";
     }
+
+    @Override
+    public String toDataFormat() {
+        return "E|" + getMarked() + "|" + getName() + "|" + getFrom() + "|" + getTo();
+    }
 }

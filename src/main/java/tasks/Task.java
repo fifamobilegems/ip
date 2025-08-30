@@ -11,6 +11,10 @@ public class Task {
         this.id = id;
     }
 
+    public String toDataFormat() {
+        return "|" + getMarked() + "|" + getName();
+    }
+
     @Override
     public String toString() {
             return getId() + ". [" + getMarked() + "] " + getName();

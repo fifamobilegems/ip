@@ -3,6 +3,7 @@ package commands;
 import exceptions.TheseException;
 import tasks.Task;
 import app.These;
+import TaskList.TaskList;
 
 public class ListCommand implements Command {
     private These these;
@@ -13,13 +14,14 @@ public class ListCommand implements Command {
 
     public boolean run(String input) throws TheseException {
 
-        Task[] task_list = these.getTask_list();
-        int task_id = these.getTask_id();
+        TaskList task_list = these.getTaskList();
+        int task_id = these.getTaskList().getId();
 
-        System.out.println("Here are the tasks in your list:");
+        String msg = "Here are the tasks in your list:";
+        these.getUi().showMessage(msg);
         for (int i = 1; i < task_id; i++) {
-            Task these = task_list[i];
-            System.out.println(these.getId() + "." + these);
+            Task task = task_list.getTask(i);
+            these.getUi().showMessage(task.getId() + "." + task);
         }
         return true;
     }

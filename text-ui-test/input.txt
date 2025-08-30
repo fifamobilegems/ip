@@ -1,3 +1,4 @@
+clear
 todo read book
 deadline return book /by yesterday
 event project meeting /from tomorrow 2pm /to the year 2039
@@ -16,4 +17,5 @@ event o /from tomorrow
 event o /to yesterday
 delete 1
 delete
+clear
 bye

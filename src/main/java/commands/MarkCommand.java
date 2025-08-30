@@ -19,11 +19,11 @@ public class MarkCommand implements Command {
         }
 
         int mark_index = Integer.parseInt(parts[1]);
-        these.getTask(mark_index).mark();
+        these.getTaskList().getTask(mark_index).mark();
 
         // output
         String msg = "Nice! I've marked this task as done:\n";
-        System.out.println(msg + these.getTask(mark_index).toString());
+        these.getUi().showMessage(msg + these.getTaskList().getTask(mark_index).toString());
 
         return true;
     }

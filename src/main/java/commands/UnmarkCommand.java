@@ -19,11 +19,11 @@ public class UnmarkCommand implements Command {
         }
 
         int unmark_index = Integer.parseInt(parts[1]);
-        these.getTask(unmark_index).unmark();
+        these.getTaskList().getTask(unmark_index).unmark();
 
         // output
         String msg = "OK, I've marked this task as not done yet:\n";
-        System.out.println(msg + these.getTask(unmark_index).toString());
+        these.getUi().showMessage(msg + these.getTaskList().getTask(unmark_index).toString());
 
         return true;
     }

@@ -9,4 +9,9 @@ public class Todo extends Task {
     public String toString() {
         return "[T][" + getMarked() + "] " + getName();
     }
+
+    @Override
+    public String toDataFormat() {
+        return "T|" + getMarked() + "|" + getName();
+    }
 }
