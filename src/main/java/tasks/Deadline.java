@@ -1,20 +1,24 @@
 package tasks;
 
-public class Deadline extends Task {
-    private String by;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
-    public Deadline(String name, boolean marked, int id, String by) {
+public class Deadline extends Task {
+    private LocalDate by;
+
+    public Deadline(String name, boolean marked, int id, LocalDate by) {
         super(name, marked, id);
         this.by = by;
     }
 
-    public String getBy() {
+    public LocalDate getBy() {
         return by;
     }
 
     @Override
     public String toString() {
-        return "[D][" + getMarked() + "] " + getName() + "(by:" + getBy() + ")";
+        return "[D][" + getMarked() + "] " + getName() + "(by: " + getBy() + ")";
     }
 
     @Override

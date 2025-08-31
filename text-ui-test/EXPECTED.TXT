@@ -12,15 +12,15 @@ Got it. I've added this task:
 [T][ ] read book
 Now you have 1 tasks in the list.
 Got it. I've added this task:
-[D][ ] return book (by: yesterday)
+[D][ ] return book (by: 2025-06-01)
 Now you have 2 tasks in the list.
 Got it. I've added this task:
-[E][ ] project meeting (from: tomorrow 2pm to: the year 2039)
+[E][ ] project meeting (from: 1997-01-01 to: 2049-09-12)
 Now you have 3 tasks in the list.
 Here are the tasks in your list:
 1.[T][ ] read book
-2.[D][ ] return book (by: yesterday)
-3.[E][ ] project meeting (from: tomorrow 2pm to: the year 2039)
+2.[D][ ] return book (by: 2025-06-01)
+3.[E][ ] project meeting (from: 1997-01-01 to: 2049-09-12)
 Nice! I've marked this task as done:
 [T][X] read book
 OK, I've marked this task as not done yet:
@@ -32,9 +32,11 @@ Error: your todo has nothing
 Error: your deadline has nothing
 Error: your event has nothing
 Error: your deadline needs to have /by field
+Error: your /by field needs to be in the format yyyy-mm-dd
 Error: your event needs to have /from field
 Error: your event needs to have /to field
 Error: your event needs to have /from field
+Error: your /from and /to fields need to be in the format yyyy-mm-dd
 Noted. I've removed this task:
 [T][ ] read book
 Now you have 2 tasks in the list

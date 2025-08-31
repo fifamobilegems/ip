@@ -1,7 +1,7 @@
 clear
 todo read book
-deadline return book /by yesterday
-event project meeting /from tomorrow 2pm /to the year 2039
+deadline return book /by 2025-06-01
+event project meeting /from 1997-01-01 /to 2049-09-12
 list
 mark 1
 unmark 1
@@ -12,9 +12,11 @@ todo
 deadline
 event
 deadline fight
+deadline fight /by tomorrow
 event o
-event o /from tomorrow
-event o /to yesterday
+event o /from 2025-01-01
+event o /to 2025-01-01
+event o /from 2002 /to now
 delete 1
 delete
 clear

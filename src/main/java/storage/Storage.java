@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 import TaskList.TaskList;
+import commands.ListCommand;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Task;
@@ -68,10 +70,13 @@ public class Storage {
                 return new Todo(parts[2], isMarked, id);
             }
             case "D" -> {
-                return new Deadline(parts[2], isMarked, id, parts[3]);
+                LocalDate by = LocalDate.parse(parts[3]);
+                return new Deadline(parts[2], isMarked, id, by);
             }
             case "E" -> {
-                return new Event(parts[2], isMarked, id, parts[3], parts[4]);
+                LocalDate from = LocalDate.parse(parts[3]);
+                LocalDate to = LocalDate.parse(parts[4]);
+                return new Event(parts[2], isMarked, id, from, to);
             }
             default -> {
                 throw new IllegalArgumentException("Unknown task type in file:" + type);
