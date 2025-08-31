@@ -1,27 +1,29 @@
 package tasks;
 
-public class Event extends Task {
-    private String from;
-    private String to;
+import java.time.LocalDate;
 
-    public Event(String name, boolean marked, int id, String from, String to) {
+public class Event extends Task {
+    private LocalDate from;
+    private LocalDate to;
+
+    public Event(String name, boolean marked, int id, LocalDate from, LocalDate to) {
         super(name, marked, id);
         this.from = from;
         this.to = to;
     }
 
-    public String getFrom() {
+    public LocalDate getFrom() {
         return from;
     }
 
-    public String getTo() {
+    public LocalDate getTo() {
         return to;
     }
 
     @Override
     public String toString() {
         return "[E][" + getMarked() + "] "
-                + getName() + "(from:" + getFrom() + "to:" + getTo() + ")";
+                + getName() + "(from: " + getFrom() + " to: " + getTo() + ")";
     }
 
     @Override
