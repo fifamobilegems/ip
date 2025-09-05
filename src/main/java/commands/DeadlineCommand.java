@@ -8,13 +8,32 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Represents a command that creates a new Deadline task
+ * in the task list of the {@link These} instance.
+ * The command expects user input to be in the format of 'deadline /by yyyy-mm-dd'
+ */
 public class DeadlineCommand implements Command {
     private These these;
 
+    /**
+     * Create a new DeadlineCommand associated with a These instance
+     *
+     * @param these the main application instance that provides access
+     * to the task list, UI, and storage
+     */
     public DeadlineCommand(These these) {
         this.these = these;
     }
 
+    /**
+     * Execute command by parsing user input, validating /by field, creating
+     * new Deadline instance and adding it to task list.
+     *
+     * @param input
+     * @return true if command is executed successfully
+     * @throws TheseException
+     */
     @Override
     public boolean run(String input) throws TheseException {
 

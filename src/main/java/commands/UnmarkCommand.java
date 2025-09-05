@@ -4,13 +4,35 @@ import exceptions.TheseException;
 import tasks.Task;
 import app.These;
 
+/**
+ * Represents a Command that marks a specified task in the task list as done
+ *
+ * When executed, the {@code UnmarkCommand} parses user input to obtain the
+ * index of the task, then changes the {@link Task}’s marked status from
+ * true to false. If there is no index given, UnmarkCommand throws a {@link TheseException}.
+ * If the task is already unmarked, the command still succeeds and returns the confirmation message.
+ */
 public class UnmarkCommand implements Command {
     private These these;
 
+    /**
+     * Constructs a new UnmarkCommand associated with a given {@link These} instance.
+     *
+     * @param these the main application instance that provides
+     * access to the task list, UI, and storage
+     */
     public UnmarkCommand(These these) {
         this.these = these;
     }
 
+    /**
+     * Executes the unmark command by parsing the user input to obtain the task index
+     * and unmarking that task as done. A success message is then displayed.
+     *
+     * @param input user input expected in the form {@code "unmark <task_number>"}
+     * @return true after command runs successfully
+     * @throws TheseException if the task number is missing
+     */
     public boolean run(String input) throws TheseException {
         // parse input and throw exception accordingly
         String[] parts = input.split(" ", 2);

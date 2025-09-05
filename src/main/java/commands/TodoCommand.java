@@ -5,9 +5,20 @@ import tasks.Task;
 import tasks.Todo;
 import app.These;
 
+/**
+ * Represents a command that creates a new Todo task
+ * in the task list of the {@link These} instance.
+ * The command expects user input to be in the format of "todo <task name>"
+ */
 public class TodoCommand implements Command {
     private These these;
 
+    /**
+     * Create a new DeadlineCommand associated with a These instance
+     *
+     * @param these the main application instance that provides access
+     * to the task list, UI, and storage
+     */
     public TodoCommand(These these) {
         this.these = these;
     }
