@@ -8,13 +8,36 @@ import app.These;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a command that creates a new Event task.
+ * The command expects user input to be in the format of 'event /from yyyy-mm-dd /by yyyy-mm-dd'
+ */
 public class EventCommand implements Command {
     private These these;
 
+    /**
+     * Create a new EventCommand associated with a These instance
+     *
+     * @param these the main application instance that provides access
+     * to the task list, UI, and storage
+     */
     public EventCommand(These these) {
         this.these = these;
     }
 
+    /**
+     * Executes the event command by parsing the user input, validating
+     * the {@code /from} and {@code /to} fields, creating a new {@link Event} task,
+     * and adding it to the task list.
+     *
+     * @param input the raw user input string containing the event description,
+     *              start date, and end date (expected format:
+     *              {@code "event <description> /from yyyy-mm-dd /to yyyy-mm-dd"})
+     * @return {@code true} if the command executes successfully
+     * @throws TheseException if the description is missing, or if either
+     *                        {@code /from} or {@code /to} fields are missing,
+     *                        or if date format is invalid
+     */
     @Override
     public boolean run(String input) throws TheseException {
 

@@ -5,13 +5,32 @@ import tasks.Task;
 import app.These;
 import TaskList.TaskList;
 
+/**
+ * Represents a command that outputs all the tasks in the TaskList
+ * sequentially based on the order they were added in
+ */
 public class ListCommand implements Command {
     private These these;
 
+    /**
+     * Create a new ListCommand associated with a These instance
+     *
+     * @param these the main application instance that provides access
+     * to the task list, UI, and storage
+     */
     public ListCommand(These these) {
         this.these = these;
     }
 
+    /**
+     * On execution, ListCommand iterates over all tasks in the {@link TaskList},
+     * and displays each task to the user in a numbered order, using {@link Task} toString()'s format
+     *
+     * @param input expects only the input "list"
+     * @return true once command executes successfully
+     * @throws TheseException not thrown in this method, but declared to
+     * align with the implementation in the {@link Command} interface
+     */
     public boolean run(String input) throws TheseException {
 
         TaskList task_list = these.getTaskList();
