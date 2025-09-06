@@ -15,9 +15,10 @@ import tasks.Todo;
 
 public class Storage {
     private File file;
+    private static final String TASK_FILE_PATH = "data/tasks.txt";
 
     public Storage() {
-        this.file = new File("data/tasks.txt");
+        this.file = new File(TASK_FILE_PATH);
         ensureFileExists();
     }
 
