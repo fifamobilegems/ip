@@ -28,7 +28,11 @@ public class Parser {
                 return new EventCommand(these);
             } case "clear" -> {
                 return new ClearCommand(these);
-            } default -> throw new TheseException("Unknown command: " + cmd);
+            } case "find" -> {
+                return new FindCommand(these);
+            } default -> {
+                return new UnknownCommand(these);
+            }
 
         }
     }

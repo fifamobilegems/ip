@@ -10,9 +10,10 @@ public class ClearCommand implements Command {
     private These these;
 
     /**
-     * Create new ClearCommand associated with a These instance
+     * Create a new ClearCommand associated with a These instance
      *
-     * @param these
+     * @param these the main application instance that provides access
+     * to the task list, UI, and storage
      */
     public ClearCommand(These these) {
         this.these = these;
