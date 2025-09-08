@@ -33,13 +33,13 @@ public class ListCommand implements Command {
      */
     public boolean run(String input) throws TheseException {
 
-        TaskList task_list = these.getTaskList();
-        int task_id = these.getTaskList().getId();
+        TaskList taskList = these.getTaskList();
+        int taskId = these.getTaskList().getId();
 
         String msg = "Here are the tasks in your list:";
         these.getUi().showMessage(msg);
-        for (int i = 1; i < task_id; i++) {
-            Task task = task_list.getTask(i);
+        for (int i = 1; i < taskId; i++) {
+            Task task = taskList.getTask(i);
             these.getUi().showMessage(task.getId() + "." + task);
         }
         return true;

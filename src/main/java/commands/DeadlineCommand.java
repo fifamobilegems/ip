@@ -1,12 +1,10 @@
 package commands;
 
-import exceptions.TheseException;
-import tasks.Deadline;
 import app.These;
+import exceptions.TheseException;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import tasks.Deadline;
 
 /**
  * Represents a command that creates a new Deadline task
@@ -47,7 +45,7 @@ public class DeadlineCommand implements Command {
             throw new TheseException("your deadline needs to have /by field");
         }
 
-        int task_id = these.getTaskList().getId();
+        int taskId = these.getTaskList().getId();
         String byDate = byPart[1];
         LocalDate by;
         try {
@@ -56,12 +54,12 @@ public class DeadlineCommand implements Command {
             throw new TheseException("your /by field needs to be in the format yyyy-mm-dd");
         }
 
-        Deadline deadline = new Deadline(byPart[0], false, task_id, by);
+        Deadline deadline = new Deadline(byPart[0], false, taskId, by);
         these.getTaskList().addTask(deadline);
 
         String msg = "Got it. I've added this task:\n"
                 + deadline
-                + "\nNow you have " + task_id + " tasks in the list.";
+                + "\nNow you have " + taskId + " tasks in the list.";
         these.getUi().showMessage(msg);
 
         return true;
