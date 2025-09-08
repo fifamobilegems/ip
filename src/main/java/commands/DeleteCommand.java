@@ -1,8 +1,8 @@
 package commands;
 
-import tasks.Task;
-import exceptions.TheseException;
 import app.These;
+import exceptions.TheseException;
+import tasks.Task;
 
 /**
  * Represents a command that deletes a single task from the task list.
@@ -37,11 +37,11 @@ public class DeleteCommand implements Command {
             throw new TheseException("you're deleting nothing");
         }
 
-        int del_index = Integer.parseInt(parts[1]);
-        Task t = these.getTaskList().deleteTask(del_index);
+        int delIndex = Integer.parseInt(parts[1]);
+        Task t = these.getTaskList().deleteTask(delIndex);
 
         String msg = "Noted. I've removed this task:\n" + t.toString()
-                + "\nNow you have " + (these.getTaskList().getId()-1) + " tasks in the list";
+                + "\nNow you have " + (these.getTaskList().getId() - 1) + " tasks in the list";
         these.getUi().showMessage(msg);
         return true;
     }

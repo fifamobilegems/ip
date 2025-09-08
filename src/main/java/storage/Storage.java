@@ -37,10 +37,6 @@ public class Storage {
         }
     }
 
-    public File getFile() {
-        return this.file;
-    }
-
     public int loadTasks(TaskList task_list) {
         int curr_id = 1;
         try {

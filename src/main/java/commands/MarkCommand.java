@@ -41,12 +41,12 @@ public class MarkCommand implements Command {
             throw new TheseException("mark needs a number");
         }
 
-        int mark_index = Integer.parseInt(parts[1]);
-        these.getTaskList().getTask(mark_index).mark();
+        int markIndex = Integer.parseInt(parts[1]);
+        these.getTaskList().getTask(markIndex).mark();
 
         // output
         String msg = "Nice! I've marked this task as done:\n";
-        these.getUi().showMessage(msg + these.getTaskList().getTask(mark_index).toString());
+        these.getUi().showMessage(msg + these.getTaskList().getTask(markIndex).toString());
 
         return true;
     }

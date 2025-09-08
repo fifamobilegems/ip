@@ -1,13 +1,12 @@
 package app;
 
-import exceptions.TheseException;
-import tasks.*;
+//CHECKSTYLE.OFF: AvoidStarImport
 import commands.*;
-
-import java.util.Objects;
+//CHECKSTYLE.ON: AvoidStarImport
+import exceptions.TheseException;
+import storage.Storage;
 import TaskList.TaskList;
 import ui.Ui;
-import storage.Storage;
 import parser.Parser;
 
 /**
@@ -20,7 +19,7 @@ import parser.Parser;
  */
 public class These {
     private final Ui ui;
-    private final TaskList task_list;
+    private final TaskList taskList;
     private final Storage storage;
 
     /**
@@ -33,11 +32,11 @@ public class These {
     public These() {
         this.ui = new Ui();
         this.storage = new Storage();
-        this.task_list = new TaskList();
+        this.taskList = new TaskList();
 
         try {
-            int task_id = storage.loadTasks(task_list);
-            this.task_list.setId(task_id);
+            int taskId = storage.loadTasks(taskList);
+            this.taskList.setId(taskId);
         } catch (Exception e) {
             ui.showError("Starting with empty list, " + e.getMessage());
         }
@@ -49,7 +48,7 @@ public class These {
      * @return {@link TaskList} containing These's current tasks
      */
     public TaskList getTaskList() {
-        return task_list;
+        return taskList;
     }
 
     /**
@@ -71,7 +70,7 @@ public class These {
      *
      * Begins with intro message, and sets isExit boolean to false. While each command
      * returns true, isExit will remain false until we receive an {@link ExitCommand}
-     * which returns false, in that case isExit will be true and we exit the loop.
+     * which returns false, in that case isExit will be true, and we exit the loop.
      */
     public void run() {
         ui.intro();
@@ -82,7 +81,7 @@ public class These {
             try {
                 Command cmd = Parser.parse(next, this);
                 isExit = !cmd.run(next);
-                storage.updateTasks(task_list);
+                storage.updateTasks(taskList);
             } catch (TheseException e) {
                 ui.showError(e.getMessage());
             }

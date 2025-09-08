@@ -1,7 +1,6 @@
 package commands;
 
 import exceptions.TheseException;
-import tasks.Task;
 import tasks.Todo;
 import app.These;
 
@@ -23,6 +22,7 @@ public class TodoCommand implements Command {
         this.these = these;
     }
 
+
     @Override
     public boolean run(String input) throws TheseException {
 
@@ -31,14 +31,14 @@ public class TodoCommand implements Command {
             throw new TheseException("your todo has nothing");
         }
 
-        int task_id = these.getTaskList().getId();
+        int taskId = these.getTaskList().getId();
 
         Todo todo = new Todo(parts[1], false, these.getTaskList().getId());
         these.getTaskList().addTask(todo);
 
         String msg = "Got it. I've added this task:\n"
                 + todo
-                + "\nNow you have " + task_id + " tasks in the list.";
+                + "\nNow you have " + taskId + " tasks in the list.";
         these.getUi().showMessage(msg);
 
         return true;
