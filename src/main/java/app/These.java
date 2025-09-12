@@ -18,7 +18,7 @@ import parser.Parser;
  *
  */
 public class These {
-    private final Ui ui;
+    private Ui ui;
     private final TaskList taskList;
     private final Storage storage;
 
@@ -85,6 +85,67 @@ public class These {
             } catch (TheseException e) {
                 ui.showError(e.getMessage());
             }
+        }
+    }
+
+    /**
+     * Process a single command and return the response for GUI
+     *
+     * @param input The user input command
+     * @return String response to be displayed in GUI
+     */
+    /**
+     * Process a single command and return the response for GUI
+     * Uses a temporary UI to capture output from existing commands
+     *
+     * @param input The user input command
+     * @return String response to be displayed in GUI
+     */
+    public String getResponse(String input) {
+        try {
+            StringBuilder output = new StringBuilder();
+            Ui originalUi = this.ui;
+
+            // Replace current UI with new temp UI
+            this.ui = new Ui() {
+                @Override
+                public void showMessage(String message) {
+                    output.append(message).append("\n");
+                }
+
+                @Override
+                public void showError(String error) {
+                    output.append("Error: ").append(error).append("\n");
+                }
+
+                @Override
+                public void intro() {
+                    // Do nothing for GUI
+                }
+
+                @Override
+                public String readNext() {
+                    return ""; // Not used in GUI mode
+                }
+            };
+
+            Command cmd = Parser.parse(input, this);
+            boolean shouldExit = !cmd.run(input);
+            storage.updateTasks(taskList);
+
+            // Restore original UI
+            this.ui = originalUi;
+
+            // outro
+            if (shouldExit) {
+                return "Goodbye! Hope to see you again soon!";
+            }
+
+            String result = output.toString().trim();
+            return result.isEmpty() ? "Command executed successfully" : result;
+
+        } catch (TheseException e) {
+            return "Error: " + e.getMessage();
         }
     }
 
