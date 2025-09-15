@@ -19,6 +19,7 @@ public class ListCommand implements Command {
      * to the task list, UI, and storage
      */
     public ListCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 
@@ -33,13 +34,18 @@ public class ListCommand implements Command {
      */
     public boolean run(String input) throws TheseException {
 
+        assert input != null : "input must not be null";
+        assert input.trim().equals("list") : "ListCommand must be invoked with 'list'";
+
         TaskList taskList = these.getTaskList();
         int taskId = these.getTaskList().getId();
+        assert taskId >= 1 : "taskId should start at 1";
 
         String msg = "Here are the tasks in your list:";
         these.getUi().showMessage(msg);
         for (int i = 1; i < taskId; i++) {
             Task task = taskList.getTask(i);
+            assert task != null : "Task " + i + " should exist";
             these.getUi().showMessage(task.getId() + "." + task);
         }
         return true;
