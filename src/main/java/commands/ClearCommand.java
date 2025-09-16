@@ -29,7 +29,6 @@ public class ClearCommand implements Command {
     @Override
     public boolean run(String input) throws TheseException {
         these.getTaskList().clear();
-        these.getStorage().updateTasks(these.getTaskList());
         these.getUi().showMessage("All tasks cleared!");
         return true;
     }

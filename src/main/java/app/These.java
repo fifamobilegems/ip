@@ -102,9 +102,10 @@ public class These {
      * @return String response to be displayed in GUI
      */
     public String getResponse(String input) {
+        StringBuilder output = new StringBuilder();
+        Ui originalUi = this.ui;
+
         try {
-            StringBuilder output = new StringBuilder();
-            Ui originalUi = this.ui;
 
             // Replace current UI with new temp UI
             this.ui = new Ui() {
@@ -146,6 +147,8 @@ public class These {
 
         } catch (TheseException e) {
             return "Error: " + e.getMessage();
+        } finally {
+            this.ui = originalUi;
         }
     }
 
