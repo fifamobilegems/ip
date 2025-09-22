@@ -3,45 +3,37 @@ package parser;
 import commands.*;
 import exceptions.TheseException;
 import app.These;
+import java.util.Map;
+import java.util.function.Function;
 
 public class Parser {
+
+    // Map of known and supported commands
+    private static final Map<String, Function<These, Command>> COMMANDS = Map.of(
+            "bye",      ExitCommand::new,
+            "list",     ListCommand::new,
+            "delete",   DeleteCommand::new,
+            "mark",     MarkCommand::new,
+            "unmark",   UnmarkCommand::new,
+            "todo",     TodoCommand::new,
+            "deadline", DeadlineCommand::new,
+            "event",    EventCommand::new,
+            "clear",    ClearCommand::new,
+            "help",     HelpCommand::new,
+    );
+
     public static Command parse(String input, These these) throws TheseException {
+
         String[] parts = input.split(" ", 2);
         String cmd = parts[0];
-
-        switch (cmd) {
-            case "bye" -> {
-                return new ExitCommand(these);
-            }
-            case "list" -> {
-                return new ListCommand(these);
-            }
-            case "delete" -> {
-                return new DeleteCommand(these);
-            }
-            case "mark" -> {
-                return new MarkCommand(these);
-            }
-            case "unmark" -> {
-                return new UnmarkCommand(these);
-            }
-            case "todo" -> {
-                return new TodoCommand(these);
-            }
-            case "deadline" -> {
-                return new DeadlineCommand(these);
-            }
-            case "event" -> {
-                return new EventCommand(these);
-            }
-            case "clear" -> {
-                return new ClearCommand(these);
-            }
-            case "help" -> {
-                return new HelpCommand(these);
-            }
-            default -> throw new TheseException("Unknown command: " + cmd);
-
+      
+        // Retrieves command (before applying null) and checks for unknown command
+        Function<These, Command> factory = COMMANDS.get(cmd);
+        if (factory == null) {
+            throw new TheseException("Unknown command: " + cmd);
         }
+
+        return factory.apply(these);
+
     }
 }

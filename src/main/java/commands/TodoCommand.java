@@ -10,7 +10,7 @@ import app.These;
  * The command expects user input to be in the format of "todo <task name>"
  */
 public class TodoCommand implements Command {
-    private These these;
+    private final These these;
 
     /**
      * Create a new DeadlineCommand associated with a These instance
@@ -19,6 +19,7 @@ public class TodoCommand implements Command {
      * to the task list, UI, and storage
      */
     public TodoCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 
@@ -26,19 +27,19 @@ public class TodoCommand implements Command {
     @Override
     public boolean run(String input) throws TheseException {
 
-        String[] parts = input.split(" ", 2);
-        if (parts.length < 2) {
+        String[] parsedInput = input.split(" ", 2);
+        if (parsedInput.length < 2) {
             throw new TheseException("your todo has nothing");
         }
 
-        int taskId = these.getTaskList().getId();
+        int nextId = these.getTaskList().getId();
 
-        Todo todo = new Todo(parts[1], false, these.getTaskList().getId());
+        Todo todo = new Todo(parsedInput[1], false, these.getTaskList().getId());
         these.getTaskList().addTask(todo);
 
         String msg = "Got it. I've added this task:\n"
                 + todo
-                + "\nNow you have " + taskId + " tasks in the list.";
+                + "\nNow you have " + nextId + " tasks in the list.";
         these.getUi().showMessage(msg);
 
         return true;

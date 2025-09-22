@@ -13,7 +13,7 @@ import app.These;
  * If the task is already unmarked, the command still succeeds and returns the confirmation message.
  */
 public class UnmarkCommand implements Command {
-    private These these;
+    private final These these;
 
     /**
      * Constructs a new UnmarkCommand associated with a given {@link These} instance.
@@ -22,6 +22,7 @@ public class UnmarkCommand implements Command {
      * access to the task list, UI, and storage
      */
     public UnmarkCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 
@@ -36,12 +37,12 @@ public class UnmarkCommand implements Command {
     @Override
     public boolean run(String input) throws TheseException {
         // parse input and throw exception accordingly
-        String[] parts = input.split(" ", 2);
-        if (parts.length < 2 || parts[1].trim().isEmpty()) {
+        String[] parsedInput = input.split(" ", 2);
+        if (parsedInput.length < 2 || parsedInput[1].trim().isEmpty()) {
             throw new TheseException("unmark needs a number");
         }
 
-        int unmark_index = Integer.parseInt(parts[1]);
+        int unmark_index = Integer.parseInt(parsedInput[1]);
         these.getTaskList().getTask(unmark_index).unmark();
 
         // output

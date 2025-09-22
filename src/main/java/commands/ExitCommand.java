@@ -11,7 +11,7 @@ import ui.Ui;
  * the main loop in {@link These} to stop running.
  */
 public class ExitCommand implements Command {
-    private These these;
+    private final These these;
 
     /**
      * Create a new ExitCommand associated with a These instance
@@ -20,6 +20,7 @@ public class ExitCommand implements Command {
      * to the task list, UI, and storage
      */
     public ExitCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 

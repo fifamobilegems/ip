@@ -1,33 +1,34 @@
 package TaskList;
 
+import java.util.Arrays;
 import tasks.Task;
 
 public class TaskList {
+    private static final int INITIAL_CAPACITY = 100;
+
     private Task[] task_list;
     private int task_id = 1;
 
     public TaskList() {
-        this.task_list = new Task[100];
+        this.task_list = new Task[INITIAL_CAPACITY];
     }
 
     public void setId(int new_id) {
         this.task_id = new_id;
     }
 
-    public Task[] getTask_list() {
-        return task_list;
-    }
-
     public void clear() {
-        this.task_list = new Task[100];
+        Arrays.fill(this.task_list, null);
         this.task_id = 1;
     }
 
-    public Task getTask(int task_id) {
-        return task_list[task_id];
+    public Task getTask(int id) {
+        if (id < 1 || id >= task_id) return null;
+        return task_list[id];
     }
 
     public void addTask(Task t) {
+        if (t == null) throw new IllegalArgumentException("task cannot be null");
         task_list[task_id] = t;
         task_id++;
     }

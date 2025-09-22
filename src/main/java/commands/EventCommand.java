@@ -12,7 +12,7 @@ import tasks.Event;
  * The command expects user input to be in the format of 'event /from yyyy-mm-dd /by yyyy-mm-dd'
  */
 public class EventCommand implements Command {
-    private These these;
+    private final These these;
 
     /**
      * Create a new EventCommand associated with a These instance
@@ -21,6 +21,7 @@ public class EventCommand implements Command {
      * to the task list, UI, and storage
      */
     public EventCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 
@@ -40,12 +41,12 @@ public class EventCommand implements Command {
     @Override
     public boolean run(String input) throws TheseException {
 
-        String[] parts = input.split(" ", 2);
-        if (parts.length < 2) {
+        String[] parsedInput = input.split(" ", 2);
+        if (parsedInput.length < 2) {
             throw new TheseException("your event has nothing");
         }
 
-        String[] fromPart = parts[1].split("/from ");
+        String[] fromPart = parsedInput[1].split("/from ");
         if (fromPart.length < 2) {
             throw new TheseException("your event needs to have /from field");
         }
@@ -55,17 +56,17 @@ public class EventCommand implements Command {
             throw new TheseException("your event needs to have /to field");
         }
 
-        int taskId = these.getTaskList().getId();
+        int nextId = these.getTaskList().getId();
         try {
             LocalDate from = LocalDate.parse(toPart[0].trim());
             LocalDate to = LocalDate.parse(toPart[1].trim());
 
-            Event event = new Event(fromPart[0], false, taskId, from, to);
+            Event event = new Event(fromPart[0], false, nextId, from, to);
             these.getTaskList().addTask(event);
 
             String msg = "Got it. I've added this task:\n"
                     + event
-                    + "\nNow you have " + taskId + " tasks in the list.";
+                    + "\nNow you have " + nextId + " tasks in the list.";
             these.getUi().showMessage(msg);
         } catch (DateTimeParseException e) {
             throw new TheseException("your /from and /to fields need to be in the format yyyy-mm-dd");

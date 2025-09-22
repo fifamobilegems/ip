@@ -14,7 +14,7 @@ import app.These;
  * still succeeds and returns the confirmation message.
  */
 public class MarkCommand implements Command {
-    private These these;
+    private final These these;
 
     /**
      * Constructs a new MarkCommand associated with a given {@link These} instance.
@@ -23,6 +23,7 @@ public class MarkCommand implements Command {
      * access to the task list, UI, and storage
      */
     public MarkCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 
@@ -36,12 +37,12 @@ public class MarkCommand implements Command {
      */
     public boolean run(String input) throws TheseException {
         // parse input and throw exception accordingly
-        String[] parts = input.split(" ", 2);
-        if (parts.length < 2 || parts[1].trim().isEmpty()) {
+        String[] parsedInput = input.split(" ", 2);
+        if (parsedInput.length < 2 || parsedInput[1].trim().isEmpty()) {
             throw new TheseException("mark needs a number");
         }
 
-        int markIndex = Integer.parseInt(parts[1]);
+        int markIndex = Integer.parseInt(parsedInput[1]);
         these.getTaskList().getTask(markIndex).mark();
 
         // output
