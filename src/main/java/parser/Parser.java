@@ -37,6 +37,9 @@ public class Parser {
             case "clear" -> {
                 return new ClearCommand(these);
             }
+            case "help" -> {
+                return new HelpCommand(these);
+            }
             default -> throw new TheseException("Unknown command: " + cmd);
 
         }
