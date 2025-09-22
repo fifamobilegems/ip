@@ -18,10 +18,6 @@ public class TaskList {
         return task_list;
     }
 
-    public boolean isEmpty() {
-        return task_id == 1;
-    }
-
     public void clear() {
         this.task_list = new Task[100];
         this.task_id = 1;

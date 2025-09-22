@@ -9,7 +9,7 @@ import tasks.Task;
  * Expects user input with an index to tell the system which task to delete
  */
 public class DeleteCommand implements Command {
-    private These these;
+    private final These these;
 
     /**
      * Create a new DeleteCommand associated with a These instance
@@ -18,6 +18,7 @@ public class DeleteCommand implements Command {
      * to the task list, UI, and storage
      */
     public DeleteCommand(These these) {
+        assert these != null : "These must not be null";
         this.these = these;
     }
 
@@ -32,12 +33,12 @@ public class DeleteCommand implements Command {
     @Override
     public boolean run(String input) throws TheseException {
         //exception
-        String[] parts = input.split(" ", 2);
-        if (parts.length < 2 || parts[1].trim().isEmpty()) {
+        String[] parsedInput = input.split(" ", 2);
+        if (parsedInput.length < 2 || parsedInput[1].trim().isEmpty()) {
             throw new TheseException("you're deleting nothing");
         }
 
-        int delIndex = Integer.parseInt(parts[1]);
+        int delIndex = Integer.parseInt(parsedInput[1]);
         Task t = these.getTaskList().deleteTask(delIndex);
 
         String msg = "Noted. I've removed this task:\n" + t.toString()

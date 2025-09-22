@@ -34,8 +34,11 @@ public class These {
         this.storage = new Storage();
         this.taskList = new TaskList();
 
+        assert ui != null : "Ui must be constructed";
+
         try {
             int taskId = storage.loadTasks(taskList);
+            assert taskId >= 0 : "Loaded task id must be non-negative";
             this.taskList.setId(taskId);
         } catch (Exception e) {
             ui.showError("Starting with empty list, " + e.getMessage());
@@ -78,6 +81,7 @@ public class These {
 
         while (!isExit) {
             String next = ui.readNext();
+            assert next != null : "ui.readNext must not return null";
             try {
                 Command cmd = Parser.parse(next, this);
                 isExit = !cmd.run(next);
@@ -105,10 +109,12 @@ public class These {
      * @return String response to be displayed in GUI
      */
     public String getResponse(String input) {
-        try {
-            StringBuilder output = new StringBuilder();
-            Ui originalUi = this.ui;
+        assert input != null : "input cannot be null";
 
+        StringBuilder output = new StringBuilder();
+        Ui originalUi = this.ui;
+        assert originalUi != null : "Ui should be initialized";
+        try {
             // Replace current UI with new temp UI
             this.ui = new Ui() {
                 @Override
@@ -149,6 +155,8 @@ public class These {
 
         } catch (TheseException e) {
             return "Error: " + e.getMessage();
+        } finally {
+            this.ui = originalUi;
         }
     }
 

@@ -12,31 +12,39 @@ public class Parser {
         switch (cmd) {
             case "bye" -> {
                 return new ExitCommand(these);
-            } case "list" -> {
+            }
+            case "list" -> {
                 return new ListCommand(these);
-            } case "delete" -> {
+            }
+            case "delete" -> {
                 return new DeleteCommand(these);
-            } case "mark" -> {
+            }
+            case "mark" -> {
                 return new MarkCommand(these);
-            } case "unmark" -> {
+            }
+            case "unmark" -> {
                 return new UnmarkCommand(these);
-            } case "todo" -> {
+            }
+            case "todo" -> {
                 return new TodoCommand(these);
-            } case "deadline" -> {
+            }
+            case "deadline" -> {
                 return new DeadlineCommand(these);
-            } case "event" -> {
+            }
+            case "event" -> {
                 return new EventCommand(these);
-            } case "clear" -> {
+            }
+            case "clear" -> {
                 return new ClearCommand(these);
+            }
+            case "find" -> {
+                return new FindCommand(these);
             }
             case "help" -> {
                 return new HelpCommand(these);
             }
-            case "find" -> {
-                return new FindCommand(these);
-            } default -> {
-                return new UnknownCommand(these);
-            }
+            default -> throw new TheseException("Unknown command: " + cmd);
+
         }
     }
 }
