@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 import TaskList.TaskList;
-import commands.ListCommand;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Task;
@@ -57,23 +56,27 @@ public class Storage {
     }
 
     public Task parseTask(String line, int id) {
-        String[] parts = line.split("\\|");
+        String[] parsedLine = line.split("\\|");
+        if (parsedLine.length < 3) {
+            throw new IllegalArgumentException("Too little fields");
+        }
 
-        String type = parts[0];
-        boolean isMarked = parts[1].equals("X");
+        String type = parsedLine[0];
+        boolean isMarked = parsedLine[1].equals("X");
+        String title = parsedLine[2];
 
         switch (type) {
             case "T" -> {
-                return new Todo(parts[2], isMarked, id);
+                return new Todo(title, isMarked, id);
             }
             case "D" -> {
-                LocalDate by = LocalDate.parse(parts[3]);
-                return new Deadline(parts[2], isMarked, id, by);
+                LocalDate by = LocalDate.parse(parsedLine[3]);
+                return new Deadline(title, isMarked, id, by);
             }
             case "E" -> {
-                LocalDate from = LocalDate.parse(parts[3]);
-                LocalDate to = LocalDate.parse(parts[4]);
-                return new Event(parts[2], isMarked, id, from, to);
+                LocalDate from = LocalDate.parse(parsedLine[3]);
+                LocalDate to = LocalDate.parse(parsedLine[4]);
+                return new Event(title, isMarked, id, from, to);
             }
             default -> {
                 throw new IllegalArgumentException("Unknown task type in file:" + type);

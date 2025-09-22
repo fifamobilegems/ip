@@ -111,7 +111,6 @@ public class These {
             StringBuilder output = new StringBuilder();
             Ui originalUi = this.ui;
             assert originalUi != null : "Ui should be initialized";
-
             // Replace current UI with new temp UI
             this.ui = new Ui() {
                 @Override
@@ -152,6 +151,8 @@ public class These {
 
         } catch (TheseException e) {
             return "Error: " + e.getMessage();
+        } finally {
+            this.ui = originalUi;
         }
     }
 
