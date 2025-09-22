@@ -5,6 +5,8 @@ event project meeting /from 1997-01-01 /to 2049-09-12
 list
 mark 1
 unmark 1
+find book
+find ass
 poo
 mark
 unmark

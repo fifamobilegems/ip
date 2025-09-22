@@ -84,6 +84,9 @@ public class These {
                 storage.updateTasks(taskList);
             } catch (TheseException e) {
                 ui.showError(e.getMessage());
+            } catch (Exception e) {
+                // Catch any unexpected exceptions
+                ui.showError("Unexpected error: " + e.getClass().getSimpleName());
             }
         }
     }

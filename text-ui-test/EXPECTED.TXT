@@ -25,6 +25,10 @@ Nice! I've marked this task as done:
 [T][X] read book
 OK, I've marked this task as not done yet:
 [T][ ] read book
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][ ] return book (by: 2025-06-01)
+No matching tasks found. Sorry!
 Error: Unknown command: poo
 Error: mark needs a number
 Error: unmark needs a number

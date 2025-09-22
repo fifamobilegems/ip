@@ -35,6 +35,7 @@ public class Ui {
     }
 
     public String readNext() {
+        System.out.print("> ");
         return sc.nextLine();
     }
 }
