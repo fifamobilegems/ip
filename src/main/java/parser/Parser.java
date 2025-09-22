@@ -18,14 +18,15 @@ public class Parser {
             "todo",     TodoCommand::new,
             "deadline", DeadlineCommand::new,
             "event",    EventCommand::new,
-            "clear",    ClearCommand::new
+            "clear",    ClearCommand::new,
+            "help",     HelpCommand::new,
     );
 
     public static Command parse(String input, These these) throws TheseException {
 
         String[] parts = input.split(" ", 2);
         String cmd = parts[0];
-
+      
         // Retrieves command (before applying null) and checks for unknown command
         Function<These, Command> factory = COMMANDS.get(cmd);
         if (factory == null) {
