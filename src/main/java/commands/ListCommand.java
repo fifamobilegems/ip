@@ -34,13 +34,19 @@ public class ListCommand implements Command {
      */
     public boolean run(String input) throws TheseException {
 
+        assert input != null : "input must not be null";
+        assert input.trim().equals("list") : "ListCommand must be invoked with 'list'";
+
         TaskList taskList = these.getTaskList();
+
         int nextId = these.getTaskList().getId();
+        assert nextId >= 1 : "taskId should start at 1";
 
         String msg = "Here are the tasks in your list:";
         these.getUi().showMessage(msg);
         for (int i = 1; i < nextId; i++) {
             Task task = taskList.getTask(i);
+            assert task != null : "Task " + i + " should exist";
             these.getUi().showMessage(task.getId() + "." + task);
         }
         return true;
